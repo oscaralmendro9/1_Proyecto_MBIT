@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - mysql
+    environment:
+      - imagekit_api_key: ${imagekit_api_key}
+      - imagekit_private_key": ${imagekit_private_key}
+      - imagekit_url_endpoint": ${imagekit_url_endpoint}
+      - imagga_api_key": ${imagga_api_key}
+      - imagga_api_secret": ${imagga_api_secret}
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    env_file:
+      - credentials.json
+    environment:
+      - MYSQL_DATABASE=${db_name}
+      - MYSQL_USER=${db_user}
+      - MYSQL_PASSWORD=${mysql_password}
+      - MYSQL_ROOT_PASSWORD=${mysql_root_password}
+    volumes:
+      - ./mysql_data:/var/lib/mysql

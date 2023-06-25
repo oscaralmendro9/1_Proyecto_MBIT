@@ -1,0 +1,8 @@
+SQLAlchemy==1.4.48
+Flask==2.3.2
+imagekitio==3.0.1
+requests==2.31.0
+waitress==2.1.2
+PyMySQL==1.0.3
+cryptography==41.0.1
+urllib3==1.26.16
